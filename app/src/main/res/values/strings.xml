@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">SunriseSunsetApp</string>
+    <string name="button_info">GET INFO</string>
+    <string name="view_address">Your address</string>
+    <string name="view_date">Date:</string>
+    <string name="view_city">City:</string>
+    <string name="date_hint">yyyy-mm-dd(none - today)</string>
+    <string name="button_search">Search City</string>
+    <string name="button_current">Current Place</string>
+    <string name="view_info">Info about sun</string>
+    <string name="menu_action_info">Info</string>
+    <string name="menu_action_about">About App</string>
+    <string name="menu_action_date">Select date</string>
+    <string name="menu_action_location">Select location</string>
+    <string name="dialog_info_title">Info</string>
+    <string name="dialog_info_message">In this application, you can choose the date and city in which you want to determine the information about the sun</string>
+    <string name="btn_continue_title">Continue</string>
+    <string name="dialog_about_title">About Application</string>
+    <string name="dialog_about_message">Зіс іс вері юзефул аплікатіон!!!</string>
+    <string name="fragment_place_finder_title">Place finder</string>
+    <string name="rb_current_place">Current place</string>
+    <string name="rb_find_place">Find place</string>
+    <string name="btn_cancel_title">Cancel</string>
+    <string name="dialog_no_gps_message">Please Turn ON your GPS Connection</string>
+    <string name="dialog_no_gps_title">No GPS Connection</string>
+    <string name="place_finder_current_info">Information about sun will be found for your current location</string>
+    <string name="place_finder_find_info">Enter desired name of the city</string>
+    <string name="city_not_found_message">City with this name or coordinates is not found. Perhaps you have not entered correctly name</string>
+    <string name="sun_info_not_found_message">Info about sun is not found.</string>
+    <string name="message_unable_to_trace">Unable to Trace your location. Having problems with GPS</string>
+    <string name="activity_main_btn_title">FOLLOW THE SUN</string>
+    <string name="activity_result_warning_message">An error occurred. Failed to determine information about Sunrise and Sunset." +
+            "Please, Check your internet connectivity</string>
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background">
+
+    <include
+        layout="@layout/toolbar" />
+
+    // custom view
+    <com.projects.sunrisesunset.views.LocationInfoView
+        android:id="@+id/mLocationInfoView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_main_custom_marginT"
+        android:layout_marginLeft="@dimen/activity_main_custom_marginLR"
+        android:layout_marginRight="@dimen/activity_main_custom_marginLR"
+        app:textColor="@color/icons"
+        app:textSize="@dimen/custom_view_text_size" />
+
+    <Button
+        android:id="@+id/btnFollow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/primary"
+        android:textStyle="bold"
+        android:textColor="@color/icons"
+        android:textSize="@dimen/activity_main_btn_text_size"
+        android:text="@string/activity_main_btn_title" />
+
+</RelativeLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/rgMode"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_margin="@dimen/fragment_place_finder_margin"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/rbCurrentPlace"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingLeft="@dimen/fragment_place_finder_rb_paddingL"
+            android:layout_marginRight="@dimen/fragment_place_finder_rb_marginR"
+            android:checked="true"
+            android:text="@string/rb_current_place">
+        </RadioButton>
+        <RadioButton
+            android:id="@+id/rbFindPlace"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingLeft="@dimen/fragment_place_finder_rb_paddingL"
+            android:layout_marginRight="@dimen/fragment_place_finder_rb_marginR"
+            android:text="@string/rb_find_place">
+        </RadioButton>
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/llCurrentPlace"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/fragment_place_finder_margin"
+        android:layout_marginRight="@dimen/fragment_place_finder_margin">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/place_finder_current_info"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llFindPlace"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/fragment_place_finder_margin"
+        android:layout_marginRight="@dimen/fragment_place_finder_margin"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/place_finder_find_info"
+            android:labelFor="@+id/etPlace"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+        <EditText
+            android:id="@+id/etPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fragment_place_finder_margin">
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/btn_cancel_title"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/btn_continue_title"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="custom_text_view_margin">7dp</dimen>
+    <dimen name="custom_text_view_padding">20dp</dimen>
+    <dimen name="activity_main_custom_marginLR">30dp</dimen>
+    <dimen name="activity_main_custom_marginT">180dp</dimen>
+    <dimen name="custom_view_text_size">11sp</dimen>
+    <dimen name="fragment_place_finder_margin">20dp</dimen>
+    <dimen name="fragment_place_finder_rb_paddingL">2dp</dimen>
+    <dimen name="fragment_place_finder_rb_marginR">5dp</dimen>
+    <dimen name="activity_main_btn_text_size">16sp</dimen>
+    <dimen name="activity_result_custom_marginLR">60dp</dimen>
+    <dimen name="activity_main_land_marginT">85dp</dimen>
+    <dimen name="activity_main_marginLR">120dp</dimen>
+    <dimen name="activity_result_land_marginLR">180dp</dimen>
+</resources>

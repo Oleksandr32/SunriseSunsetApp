@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:id="@+id/tvSunrise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/custom_text_view_margin"
+        android:drawablePadding="@dimen/custom_text_view_padding"
+        android:drawableLeft="@drawable/ic_brightness_low_white_48dp" />
+    <TextView
+        android:id="@+id/tvDayLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/custom_text_view_margin"
+        android:drawablePadding="@dimen/custom_text_view_padding"
+        android:drawableLeft="@drawable/ic_favorite_white_48dp" />
+    <TextView
+        android:id="@+id/tvSunset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/custom_text_view_margin"
+        android:drawableLeft="@drawable/ic_brightness_3_white_48dp"
+        android:drawablePadding="@dimen/custom_text_view_padding" />
+</merge>
