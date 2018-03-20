@@ -34,7 +34,7 @@ public class CityRestClient {
     *   To search city, you can include the address parameter in your Geocode Search requests.
     */
     public static final String REST_URL_FOR_CITY_BY_NAME = "http://maps.googleapis.com/maps/api/geocode/json?address=%s&language=en";
-    public static final String REST_URL_FOR_CITY_BY_LOCATION = "http://maps.googleapis.com/maps/api/geocode/json?latlng=%f,%f&sensor=true&language=en";
+    public static final String REST_URL_FOR_CITY_BY_LOCATION = "http://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s&sensor=true&language=en";
 
     // context (MainActivity)
     private Context context;
@@ -49,9 +49,10 @@ public class CityRestClient {
     // perform async HTTP GET request, parse json response and return object of City.
     public void getCity(String name, Location loc) {
         String url;
-        if ( name == null )
-            url = String.format( REST_URL_FOR_CITY_BY_LOCATION, loc.getLatitude(), loc.getLongitude() );
-        else
+        if ( name == null ) { // convert double to string and replace "," to "." for correct GET request
+            url = String.format( REST_URL_FOR_CITY_BY_LOCATION, String.valueOf( loc.getLatitude() ).replace(',', '.'),
+                    String.valueOf( loc.getLongitude() ).replace(',', '.') );
+        } else
             url = String.format( REST_URL_FOR_CITY_BY_NAME, name );
 
         // that's async client

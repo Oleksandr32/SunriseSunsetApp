@@ -26,9 +26,8 @@
     <string name="place_finder_current_info">Information about sun will be found for your current location</string>
     <string name="place_finder_find_info">Enter desired name of the city</string>
     <string name="city_not_found_message">City with this name or coordinates is not found. Perhaps you have not entered correctly name</string>
-    <string name="sun_info_not_found_message">Info about sun is not found.</string>
-    <string name="message_unable_to_trace">Unable to Trace your location. Having problems with GPS</string>
+    <string name="unable_to_trace_message">Unable to Trace your location. Having problems with GPS</string>
     <string name="activity_main_btn_title">FOLLOW THE SUN</string>
-    <string name="activity_result_warning_message">An error occurred. Failed to determine information about Sunrise and Sunset." +
-            "Please, Check your internet connectivity</string>
+    <string name="activity_result_warning_message">An error occurred. Failed to determine information about Sunrise and Sunset. Please, Check your internet connectivity</string>
+    <string name="permission_not_granted_message">An error occurred. Permission is not granted.</string>
 </resources>

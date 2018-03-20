@@ -71,7 +71,7 @@ public class PlaceFinderDialogFragment extends DialogFragment
             if ( !cityName.isEmpty() )
                 context.getCityData( cityName, null );
             else
-                context.startDetermineLocationTask();
+                context.determineCurrentLocation();
         }
 
         dismiss();

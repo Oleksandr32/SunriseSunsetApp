@@ -47,7 +47,7 @@ public class ResultActivity extends AppCompatActivity {
 
         if ( city == null ) {
             setSunData( null );
-            Toast.makeText(this, R.string.sun_info_not_found_message, Toast.LENGTH_LONG ).show();
+            Toast.makeText(this, R.string.activity_result_warning_message, Toast.LENGTH_LONG ).show();
         }
         else // performed asynchronously
             client.getSun(date, city.getLocation().getLatitude(), city.getLocation().getLongitude());

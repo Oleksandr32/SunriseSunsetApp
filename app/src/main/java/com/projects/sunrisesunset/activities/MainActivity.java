@@ -1,14 +1,7 @@
 package com.projects.sunrisesunset.activities;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.AsyncTask;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -22,11 +15,11 @@ import android.widget.Toast;
 import com.projects.sunrisesunset.R;
 import com.projects.sunrisesunset.fragments.AboutDialogFragment;
 import com.projects.sunrisesunset.fragments.InfoDialogFragment;
-import com.projects.sunrisesunset.fragments.NoGpsConnectionDialogFragment;
 import com.projects.sunrisesunset.fragments.DatePickerDialogFragment;
 import com.projects.sunrisesunset.fragments.PlaceFinderDialogFragment;
 import com.projects.sunrisesunset.models.City;
 import com.projects.sunrisesunset.network.CityRestClient;
+import com.projects.sunrisesunset.utils.LocationHelper;
 import com.projects.sunrisesunset.views.LocationInfoView;
 
 import java.text.SimpleDateFormat;
@@ -63,8 +56,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // init widgets
         initWidgets();
 
-        // start async task for determine current location
-        startDetermineLocationTask();
+        /*
+         *  determine current location using util LocationHelper
+         *  THIS IS DEFAULT MODE OF APP
+         */
+        determineCurrentLocation();
 
         // init dialog fragments
         mInfoDialogFragment = new InfoDialogFragment();
@@ -81,13 +77,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mLocationInfoView = findViewById( R.id.mLocationInfoView );
         // set current date on LocationInfoView
         onDateSelected( new SimpleDateFormat("yyyy-MM-dd" ).format( new Date() ) );
-
+        // set listener
         ( (Button) findViewById(R.id.btnFollow) ).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        // start activity, which information about sun
+        // start activity, which contains information about sun
         startActivity( new Intent(this, ResultActivity.class)
                 .putExtra( ResultActivity.EXTRA_PARAM_DATE, mLocationInfoView.getDate() )
                 .putExtra( ResultActivity.EXTRA_PARAM_CITY, client.getResult() ) );
@@ -132,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // update current location or location of desired city on LocationInfoView
     public void onLocationChange(City city) {
-        if (city == null) // show "city not found" message
+        if ( city == null ) // show "city not found" message
             Toast.makeText(this, R.string.city_not_found_message, Toast.LENGTH_LONG).show();
         // show "unknown" text
         mLocationInfoView.setCityInfo( city );
@@ -144,68 +140,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         client.getCity( name, location );
     }
 
-    // start async task for determine current location
-    public void startDetermineLocationTask() {
-        DetermineLocationTask mLocationTask = new DetermineLocationTask();
-
-        if ( !mLocationTask.isProviderEnabled )
-            new NoGpsConnectionDialogFragment().show(getSupportFragmentManager(), NoGpsConnectionDialogFragment.DIALOG_TAG);
-        else // performed asynchronously
-            mLocationTask.execute();
-    }
-
-    // async task for determine last known location
-    private class DetermineLocationTask extends AsyncTask<Void, Void, Location> {
-        // flag for GPS status
-        boolean isProviderEnabled;
-
-        // location manager
-        LocationManager locationManager;
-
-        public DetermineLocationTask() {
-            locationManager = (LocationManager) MainActivity.this.getSystemService( Context.LOCATION_SERVICE );
-            isProviderEnabled = locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER );
-            locationManager.requestLocationUpdates("gps", 5000, 0, new LocationListener() {
-                @Override
-                public void onLocationChanged(Location location) {}
-                @Override
-                public void onStatusChanged(String s, int i, Bundle bundle) {}
-                @Override
-                public void onProviderEnabled(String s) {}
-                @Override
-                public void onProviderDisabled(String s) {}
-            });
-        }
-
-        //to get the user's current location // performed asynchronously
-        @Override
-        protected Location doInBackground(Void... voids) {
-            // permission check
-            if ( ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION )
-                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainActivity.this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO
-                return null;
-            }
-            // get last known location
-            Location locationNet = locationManager.getLastKnownLocation( LocationManager.NETWORK_PROVIDER );
-            Location locationGPS = locationManager.getLastKnownLocation( LocationManager.GPS_PROVIDER );
-            Location locationProvider = locationManager.getLastKnownLocation( LocationManager.PASSIVE_PROVIDER );
-
-            if ( locationNet != null ) return locationNet;
-            else if ( locationGPS != null ) return locationGPS;
-            else if ( locationProvider != null ) return locationProvider;
-            else  return null;
-        }
-
-        @Override
-        protected void onPostExecute(Location location) {
-            super.onPostExecute( location );
-            Log.d( LOG_TAG, ACTIVITY_TAG +  ": End DetermineLocationTask. Result: " + location );
-            // show location
-            mLocationInfoView.setLocation( location );
-            // determine address of current location by using async http client
+    //  determine current location using LocationHelper instance
+    public void determineCurrentLocation() {
+        LocationHelper locationHelper = LocationHelper.getInstance();
+        locationHelper.determineLocation( this );
+        Location location = locationHelper.getLocation();
+        // debug location
+        Log.d( LOG_TAG, ACTIVITY_TAG + ": location = " + location );
+        // show current coordinates
+        mLocationInfoView.setLocation( location );
+        // determine object of City for current location
+        if ( location != null )
             getCityData( null, location );
+        else {
+            onLocationChange( null ); // show "unknown" text
         }
-    } // end DetermineLocationTask class
+    }
 }
