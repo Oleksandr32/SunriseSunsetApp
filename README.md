@@ -15,5 +15,5 @@
 </ul>
 <br/><br/>
 <h3>Example of work</h3>
-<img src="https://drive.google.com/open?id=1Xx5VJNfVVSPYGLmrk90WxN3G2YaIFErO" alt="Test SunriseSunsetApp">
+<img src="https://user-images.githubusercontent.com/24620659/37600919-5c51d1ca-2b91-11e8-8e64-dcfc15807d34.gif" alt="Test SunriseSunsetApp">
 </html>
